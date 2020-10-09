@@ -13,30 +13,12 @@ import "fmt"
 
 //Integer类型也实现了StudentService
 type Integer int
-func (i Integer) getUserId(str string) int {
-	return 30
-}
-
-
-
-
-type StudentService interface {
-	getUserId(str string) int
-}
-
-type StudentServiceImpl struct {
-
-}
-
-func (ss StudentServiceImpl)getUserId(str string) int {
-	return 20
+func (i Integer) addOne() int {
+	return int(i + 1)
 }
 
 func main() {
-	var ss StudentService = StudentServiceImpl{}
-	result := ss.getUserId("hello")
-	fmt.Println(result)
-	ss = Integer(10)
-	result = ss.getUserId("world")
+	var i Integer = 2
+	result := i.addOne()
 	fmt.Println(result)
 }
