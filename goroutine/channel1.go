@@ -10,4 +10,21 @@ func main() {
 	var intChan chan int
 	intChan = make(chan int, 3)
 	fmt.Printf("intChan 的值=%v\n", intChan)
+	fmt.Println("channel 本身的地址=", &intChan)
+
+	//向管道写入数时，不能超过容量
+	intChan <- 10
+	num := 988
+	intChan <- num
+	//intChan <- 211
+
+	fmt.Println("管道的长度=",len(intChan),",容量=", cap(intChan))
+
+	//从管道读取数据
+	result := <- intChan
+	fmt.Println(result)
+	result = <- intChan
+	fmt.Println(result)
+
+	//在没有使用协程的情况下，如果我们的管道数据已经全部取出，再取就会报死锁
 }
